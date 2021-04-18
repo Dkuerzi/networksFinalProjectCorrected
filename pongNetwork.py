@@ -10,17 +10,17 @@ class Network:
         self.addr = (self.server, self.port)
         self.p = self.connect()
 
-    #connects to the server and recieves starting position
+    # connects to the server and recieves starting position
     def connect(self):
         try:
             self.client.connect(self.addr)
         except:
             pass
-    #sends the position to the server and returns oppossing players position.
+    # sends the position to the server and returns oppossing players position.
+
     def send(self, data):
         try:
             self.client.send(pickle.dumps(data))
             return pickle.loads(self.client.recv(2048))
         except socket.error as e:
             print(e)
-
