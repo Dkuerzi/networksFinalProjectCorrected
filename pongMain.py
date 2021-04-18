@@ -85,13 +85,18 @@ def key():
 
 
 # Main game loop
+# Creates network class which creates a connection with the server
 n = Network()
 
 while True:
     wn.update()
+    # Key handles all of the keyboard inputs via key press, i.e. 'w' or 's'
     key()
+    
+    # Sending current position of paddle a to the server
     position = [paddle_a.xcor(), paddle_a.ycor()]
     p = n.send(position)
+    # Receive position of the opposing player from the server, and updated paddle b accordingly
     p2 = [p[0] * -1, p[1]]
     paddle_b.goto(p2)
     # ballCords = n.send([ball.xcor(), ball.ycor()])
